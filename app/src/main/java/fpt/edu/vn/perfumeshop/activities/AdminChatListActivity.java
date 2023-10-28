@@ -1,0 +1,105 @@
+package fpt.edu.vn.perfumeshop.activities;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+
+import fpt.edu.vn.perfumeshop.R;
+import fpt.edu.vn.perfumeshop.SignInActivity;
+import fpt.edu.vn.perfumeshop.adapters.CustomerAdapter;
+import fpt.edu.vn.perfumeshop.apis.CustomerRepository;
+import fpt.edu.vn.perfumeshop.apis.CustomerService;
+import fpt.edu.vn.perfumeshop.constants.AppConstants;
+import fpt.edu.vn.perfumeshop.models.Customer;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class AdminChatListActivity extends AppCompatActivity {
+    ListView lvCustomers;
+    ArrayList<Customer> customerList;
+    CustomerAdapter customerAdapter;
+    CustomerService customerService;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_admin_chat_list);
+
+        lvCustomers = findViewById(R.id.lvCustomerList);
+        customerList = new ArrayList<>();
+        customerAdapter = new CustomerAdapter(AdminChatListActivity.this, R.layout.customer_list_item, customerList);
+        lvCustomers.setAdapter(customerAdapter);
+        customerService = CustomerRepository.getCustomerService();
+        LoadCustomerList();
+
+        lvCustomers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Customer customer= (Customer) customerAdapter.getItem(position);
+                Intent intent = new Intent(AdminChatListActivity.this, ChatActivity.class);
+                intent.putExtra(AppConstants.USER_ID, customer.getId());
+                intent.putExtra(AppConstants.USER_UID, customer.getUid());
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void LoadCustomerList() {
+        try {
+            Call<Customer[]> call = customerService.getAllCustomers();
+            call.enqueue(new Callback<Customer[]>() {
+                @Override
+                public void onResponse(Call<Customer[]> call, Response<Customer[]> response) {
+                    Customer[] customers = response.body();
+                    if (customers == null) {
+                        return;
+                    }
+                    customerList.clear();
+                    for (Customer customer: customers) {
+                        customerList.add(customer);
+                    }
+                    customerAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFailure(Call<Customer[]> call, Throwable t) {
+                    Toast.makeText(AdminChatListActivity.this, "Load data test failed!", Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (Exception e) {
+            Log.d("Load data test error", e.getMessage());
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.admin_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_home_admin) {
+            // profile setting processor
+            startActivity(new Intent(AdminChatListActivity.this, AdminActivity.class));
+        }
+        else if (item.getItemId() == R.id.menu_logout) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(AdminChatListActivity.this, SignInActivity.class));
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}

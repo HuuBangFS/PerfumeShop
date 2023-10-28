@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "67877584823",
+    "firebase_url": "https://perfumeshop-48336-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "perfumeshop-48336",
+    "storage_bucket": "perfumeshop-48336.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67877584823:android:8426d6523347a94716f232",
+        "android_client_info": {
+          "package_name": "com.example.perfumeshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZpyhnMDsskE4mFYR-lR7VZ5LRowZjZdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67877584823:android:d57d3badfda0cbd216f232",
+        "android_client_info": {
+          "package_name": "fpt.edu.vn.perfumeshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZpyhnMDsskE4mFYR-lR7VZ5LRowZjZdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

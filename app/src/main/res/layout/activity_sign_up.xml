@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="24dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create an account"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="#000055"/>
+            <EditText
+                android:id="@+id/etNameRegister"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:padding="8dp"
+                android:hint="Full name"
+                android:drawableLeft="@drawable/person_back"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"
+                android:backgroundTint="#111111"
+                android:textColorHint="#BBBBBB"/>
+            <EditText
+                android:id="@+id/etEmailRegister"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:padding="8dp"
+                android:hint="Email"
+                android:drawableLeft="@drawable/email_black"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"
+                android:backgroundTint="#111111"
+                android:textColorHint="#BBBBBB"/>
+
+            <EditText
+                android:id="@+id/etPasswordRegister"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:drawableLeft="@drawable/lock_back"
+                android:drawablePadding="8dp"
+                android:hint="Password"
+                android:padding="8dp"
+                android:password="true"
+                android:textColor="@color/black"
+                android:backgroundTint="#111111"
+                android:textColorHint="#BBBBBB"/>
+
+            <EditText
+                android:id="@+id/etPasswordConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:drawableLeft="@drawable/info_black"
+                android:drawablePadding="8dp"
+                android:hint="Confirm password"
+                android:padding="8dp"
+                android:password="true"
+                android:textColor="@color/black"
+                android:backgroundTint="#111111"
+                android:textColorHint="#BBBBBB"/>
+            <Button
+                android:id="@+id/btnSignup"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Sign Up"
+                android:textSize="18dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#000055"
+                android:textColor="@color/white"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already have account?"/>
+                <TextView
+                    android:id="@+id/textViewLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Login."
+                    android:textColor="@color/blue"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
